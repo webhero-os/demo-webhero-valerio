@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WEBhero Valerio – Webdesign aus Mannheim</title>
+    <style>
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #16213e;
+            --accent: #e94560;
+            --accent-light: #ff6b81;
+            --text: #f5f5f5;
+            --text-muted: #b0b0c0;
+            --bg-dark: #0f0f1a;
+            --bg-card: rgba(255,255,255,0.05);
+            --border: rgba(255,255,255,0.08);
+            --success: #2ecc71;
+            --gradient-hero: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            --gradient-accent: linear-gradient(135deg, #e94560, #ff6b81);
+            --gradient-section: linear-gradient(180deg, #0f0f1a 0%, #1a1a2e 100%);
+        }
+
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* ── Header ── */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(15, 15, 26, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            transition: box-shadow 0.3s;
+        }
+
+        header.scrolled {
+            box-shadow: 0 4px 30px rgba(0,0,0,0.4);
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0.9rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 800;
+            text-decoration: none;
+            color: var(--text);
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        nav {
+            display: flex;
+            gap: 0.3rem;
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 0.45rem 0.9rem;
+            border-radius: 6px;
+            transition: color 0.25s, background 0.25s;
+        }
+
+        nav a:hover, nav a:focus {
+            color: var(--text);
+            background: var(--bg-card);
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .nav-toggle span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--text);
+            margin: 5px 0;
+            border-radius: 2px;
+            transition: transform 0.3s, opacity 0.3s;
+        }
+
+        /* ── Hero ── */
+        #hero {
+            background: var(--gradient-hero);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #hero::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(233,69,96,0.12) 0%, transparent 70%);
+            top: -100px;
+            right: -150px;
+            border-radius: 50%;
+        }
+
+        #hero::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(15,52,96,0.3) 0%, transparent 70%);
+            bottom: -80px;
+            left: -100px;
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 6rem 1.5rem 4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: var(--accent-light);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.2rem, 5.5vw, 4rem);
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 1.2rem;
+            letter-spacing: -1px;
+        }
+
+        .hero-content h1 .highlight {
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-content p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 560px;
+            margin-bottom: 2.2rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.85rem 1.8rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.25s, box-shadow 0.25s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            background: var(--gradient-accent);
+            color: #fff;
+            box-shadow: 0 4px 20px rgba(233,69,96,0.35);
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 6px 30px rgba(233,69,96,0.5);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .btn-outline:hover {
+            background: var(--bg-card);
+            border-color: rgba(255,255,255,0.35);
+        }
+
+        /* ── Sections ── */
+        section {
+            padding: 5rem 1.5rem;
+        }
+
+        .section-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: 0.6rem;
+        }
+
+        .section-title {
+            font-size: clamp(1.8rem, 4vw, 2.6rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
+        }
+
+        .section-subtitle {
+            color: var(--text-muted);
+            max-width: 600px;
+            margin-bottom: 3rem;
+            font-size: 1.05rem;
+        }
+
+        /* ── Leistungen ── */
+        #leistungen {
+            background: var(--gradient-section);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .service-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 2rem;
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(233,69,96,0.3);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+        }
+
+        .service-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.2rem;
+            background: linear-gradient(135deg, rgba(233,69,96,0.15), rgba(255,107,129,0.08));
+            border: 1px solid rgba(233,69,96,0.15);
+        }
+
+        .service-card h3 {
+            font-size: 1.15rem;
+            margin-bottom: 0.6rem;
+            font-weight: 700;
+        }
+
+        .service-card p {
+            color: var(--text-muted);
+            font-size: 0.93rem;
+        }
+
+        /* ── Über uns ── */
+        #ueber {
+            background: var(--bg-dark);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-visual {
+            aspect-ratio: 4/3;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #1a1a2e, #0f3460, #e94560);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-visual::before {
+            content: '<WH/>';
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            font-weight: 800;
+            color: rgba(255,255,255,0.12);
+            font-family: 'Courier New', monospace;
+        }
+
+        .about-text h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .about-text p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            font-size: 0.97rem;
+        }
+
+        .stats-row {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ── Prozess ── */
+        #prozess {
+            background: var(--gradient-section);
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            counter-reset: step;
+        }
+
+        .process-step {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 2rem 1.5rem;
+            position: relative;
+            text-align: center;
+            counter-increment: step;
+        }
+
+        .process-step::before {
+            content: counter(step);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--gradient-accent);
+            color: #fff;
+            font-weight: 800;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .process-step h3 {
+            font-size: 1.05rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .process-step p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* ── Projekte ── */
+        #projekte {
+            background: var(--bg-dark);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .project-card {
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+        }
+
+        .project-preview {
+            height: 200px;
+            position: relative;
+        }
+
+        .project-preview-1 {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        .project-preview-2 {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+        }
+
+        .project-preview-3 {
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+        }
+
+        .project-preview::after {
+            content: '';
+            position: absolute;
+            inset: 20px;
+            border: 2px solid rgba(255,255,255,0.15);
+            border-radius: 8px;
+        }
+
+        .project-info {
+            padding: 1.5rem;
+            background: var(--bg-card);
+        }
+
+        .project-info h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .project-info p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.7rem;
+            border-radius: 50px;
+            background: rgba(233,69,96,0.1);
+            color: var(--accent-light);
+            border: 1px solid rgba(233,69,96,0.15);
+        }
+
+        /* ── Kontakt ── */
+        #kontakt {
+            background: var(--gradient-section);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-info-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .contact-detail h4 {
+            font-size: 0.95rem;
+            margin-bottom: 0.15rem;
+        }
+
+        .contact-detail p, .contact-detail a {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            text-decoration: none;
+        }
+
+        .contact-detail a:hover {
+            color: var(--accent-light);
+        }
+
+        .contact-form {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+            color: var(--text-muted);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text);
+            font-size: 0.95rem;
+            font-family: inherit;
+            transition: border-color 0.25s, box-shadow 0.25s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(233,69,96,0.15);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-success {
+            display: none;
+            background: rgba(46,204,113,0.1);
+            border: 1px solid rgba(46,204,113,0.25);
+            color: var(--success);
+            padding: 1rem 1.2rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            margin-top: 1rem;
+        }
+
+        .form-success.show {
+            display: block;
+        }
+
+        /* ── Footer ── */
+        footer {
+            background: var(--primary);
+            border-top: 1px solid var(--border);
+            padding: 2.5rem 1.5rem;
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-copy {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.25s;
+        }
+
+        .footer-links a:hover {
+            color: var(--text);
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 1024px) {
+            .about-grid, .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-visual {
+                max-height: 280px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-toggle {
+                display: block;
+            }
+
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                background: var(--primary);
+                flex-direction: column;
+                padding: 5rem 2rem 2rem;
+                gap: 0.5rem;
+                transition: right 0.35s ease;
+                border-left: 1px solid var(--border);
+                z-index: 999;
+            }
+
+            nav.open {
+                right: 0;
+            }
+
+            nav a {
+                font-size: 1.05rem;
+                padding: 0.7rem 1rem;
+            }
+
+            .hero-content {
+                padding: 5rem 1.5rem 3rem;
+            }
+
+            .stats-row {
+                gap: 1.2rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            section {
+                padding: 3.5rem 1rem;
+            }
+
+            .header-inner {
+                padding: 0.8rem 1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                justify-content: center;
+            }
+
+            .stats-row {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-form {
+                padding: 1.5rem;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header id="top">
+        <div class="header-inner">
+            <a href="#hero" class="logo">WEB<span>hero</span></a>
+            <button class="nav-toggle" aria-label="Navigation öffnen" onclick="document.querySelector('nav').classList.toggle('open')">
+                <span></span><span></span><span></span>
+            </button>
+            <nav>
+                <a href="#leistungen" onclick="closeNav()">Leistungen</a>
+                <a href="#ueber" onclick="closeNav()">Über uns</a>
+                <a href="#prozess" onclick="closeNav()">Ablauf</a>
+                <a href="#projekte" onclick="closeNav()">Projekte</a>
+                <a href="#kontakt" onclick="closeNav()">Kontakt</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section id="hero">
+        <div class="hero-content">
+            <div class="hero-badge">✦ Webdesign aus Mannheim</div>
+            <h1>Ihre digitale Präsenz,<br><span class="highlight">professionell umgesetzt.</span></h1>
+            <p>WEBhero Valerio gestaltet moderne, performante Websites für Unternehmen in Mannheim und der Metropolregion Rhein-Neckar – individuell, responsiv und suchmaschinenoptimiert.</p>
+            <div class="hero-buttons">
+                <a href="#kontakt" class="btn btn-primary">Projekt starten →</a>
+                <a href="#leistungen" class="btn btn-outline">Leistungen entdecken</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leistungen -->
+    <section id="leistungen">
+        <div class="section-inner">
+            <div class="section-label">Was wir bieten</div>
+            <h2 class="section-title">Unsere Leistungen</h2>
+            <p class="section-subtitle">Vom ersten Konzept bis zur fertigen Website – alles aus einer Hand, abgestimmt auf Ihre Ziele.</p>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🎨</div>
+                    <h3>Webdesign</h3>
+                    <p>Individuelles Design, das Ihre Marke widerspiegelt und Besucher in Kunden verwandelt. Modern, ästhetisch und benutzerfreundlich.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">⚡</div>
+                    <h3>Webentwicklung</h3>
+                    <p>Technisch einwandfreie Umsetzung mit schnellen Ladezeiten und sauberer Programmierung – für jedes Endgerät optimiert.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔍</div>
+                    <h3>SEO-Optimierung</h3>
+                    <p>Bessere Sichtbarkeit bei Google durch gezielte Suchmaschinenoptimierung. Damit Ihre Kunden Sie auch online finden.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📱</div>
+                    <h3>Responsive Design</h3>
+                    <p>Ihre Website funktioniert perfekt auf Smartphone, Tablet und Desktop – für ein optimales Nutzererlebnis auf jedem Gerät.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🛒</div>
+                    <h3>Online-Shops</h3>
+                    <p>Verkaufen Sie Ihre Produkte online mit einem benutzerfreundlichen Shop – professionell eingerichtet und einfach zu verwalten.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔧</div>
+                    <h3>Wartung & Support</h3>
+                    <p>Updates, Sicherheit und technischer Support – wir halten Ihre Website aktuell und kümmern uns um den laufenden Betrieb.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Über uns -->
+    <section id="ueber">
+        <div class="section-inner">
+            <div class="about-grid">
+                <div class="about-visual"></div>
+                <div class="about-text">
+                    <div class="section-label">Über uns</div>
+                    <h3>Leidenschaft für modernes Webdesign</h3>
+                    <p>WEBhero Valerio steht für kreatives Webdesign mit Substanz. Aus Mannheim heraus unterstützen wir Unternehmen, Selbstständige und Startups dabei, online professionell aufzutreten.</p>
+                    <p>Unser Anspruch: Jede Website ist ein Unikat. Keine Templates von der Stange, sondern maßgeschneiderte Lösungen, die exakt zu Ihrem Unternehmen passen – visuell ansprechend und technisch auf dem neuesten Stand.</p>
+                    <div class="stats-row">
+                        <div class="stat">
+                            <div class="stat-number">50+</div>
+                            <div class="stat-label">Projekte</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">100%</div>
+                            <div class="stat-label">Responsive</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">5★</div>
+                            <div class="stat-label">Bewertungen</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Prozess -->
+    <section id="prozess">
+        <div class="section-inner">
+            <div class="section-label">Unser Ablauf</div>
+            <h2 class="section-title">In 4 Schritten zur fertigen Website</h2>
+            <p class="section-subtitle">Transparent, strukturiert und effizient – so arbeiten wir gemeinsam an Ihrem Webprojekt.</p>
+            <div class="process-steps">
+                <div class="process-step">
+                    <h3>Beratung</h3>
+                    <p>Wir lernen Ihr Unternehmen kennen, besprechen Ihre Ziele und erarbeiten ein klares Konzept.</p>
+                </div>
+                <div class="process-step">
+                    <h3>Design</h3>
+                    <p>Auf Basis des Konzepts gestalten wir ein modernes Layout, das Ihre Marke perfekt in Szene setzt.</p>
+                </div>
+                <div class="process-step">
+                    <h3>Entwicklung</h3>
+                    <p>Das Design wird technisch umgesetzt – responsiv, schnell und suchmaschinenfreundlich.</p>
+                </div>
+                <div class="process-step">
+                    <h3>Launch</h3>
+                    <p>Nach Ihrer Freigabe geht die Website live. Wir stehen Ihnen auch danach mit Support zur Seite.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projekte -->
+    <section id="projekte">
+        <div class="section-inner">
+            <div class="section-label">Portfolio</div>
+            <h2 class="section-title">Ausgewählte Projekte</h2>
+            <p class="section-subtitle">Ein Auszug unserer Arbeiten – jedes Projekt erzählt seine eigene Geschichte.</p>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-preview project-preview-1"></div>
+                    <div class="project-info">
+                        <h3>Rhein-Neckar Physiotherapie</h3>
+                        <p>Moderner Webauftritt für eine Physiotherapie-Praxis mit Online-Terminbuchung.</p>
+                        <div class="project-tags">
+                            <span class="tag">Webdesign</span>
+                            <span class="tag">Responsive</span>
+                            <span class="tag">SEO</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-preview project-preview-2"></div>
+                    <div class="project-info">
+                        <h3>Café Goldstück</h3>
+                        <p>Einladende Website für ein Mannheimer Café mit Speisekarte und Galerie.</p>
+                        <div class="project-tags">
+                            <span class="tag">Branding</span>
+                            <span class="tag">Onepager</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-preview project-preview-3"></div>
+                    <div class="project-info">
+                        <h3>TechVision GmbH</h3>
+                        <p>Corporate Website für ein IT-Unternehmen mit Fokus auf klare Struktur und Leadgenerierung.</p>
+                        <div class="project-tags">
+                            <span class="tag">Corporate</span>
+                            <span class="tag">Webentwicklung</span>
+                            <span class="tag">SEO</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kontakt -->
+    <section id="kontakt">
+        <div class="section-inner">
+            <div class="section-label">Kontakt</div>
+            <h2 class="section-title">Lassen Sie uns sprechen</h2>
+            <p class="section-subtitle">Bereit für Ihre neue Website? Schreiben Sie uns – wir melden uns innerhalb von 24 Stunden.</p>
+            <div class="contact-grid">
+                <div class="contact-details">
+                    <div class="contact-info-card">
+                        <div class="contact-icon">📍</div>
+                        <div class="contact-detail">
+                            <h4>Standort</h4>
+                            <p>Mannheim, Deutschland</p>
+                        </div>
+                    </div>
+                    <div class="contact-info-card">
+                        <div class="contact-icon">✉️</div>
+                        <div class="contact-detail">
+                            <h4>E-Mail</h4>
+                            <a href="mailto:info@webhero-valerio.de">info@webhero-valerio.de</a>
+                        </div>
+                    </div>
+                    <div class="contact-info-card">
+                        <div class="contact-icon">🌐</div>
+                        <div class="contact-detail">
+                            <h4>Website</h4>
+                            <a href="https://webhero-valerio.de" target="_blank" rel="noopener">webhero-valerio.de</a>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form" id="contactForm" onsubmit="return handleSubmit(event)">
+                    <div class="form-group">
+                        <label for="name">Name *</label>
+                        <input type="text" id="name" name="name" required placeholder="Ihr vollständiger Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-Mail *</label>
+                        <input type="email" id="email" name="email" required placeholder="ihre@email.de">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Telefon (optional)</label>
+                        <input type="tel" id="phone" name="phone" placeholder="+49 621 ...">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Nachricht *</label>
+                        <textarea id="message" name="message" required placeholder="Erzählen Sie uns von Ihrem Projekt ..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Nachricht senden →</button>
+                    <div class="form-success" id="formSuccess">
+                        ✓ Vielen Dank für Ihre Nachricht! Wir melden uns schnellstmöglich bei Ihnen.
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-copy">© 2026 WEBhero Valerio · Webdesign aus Mannheim</div>
+            <div class="footer-links">
+                <a href="#hero">Nach oben</a>
+                <a href="#">Impressum</a>
+                <a href="#">Datenschutz</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function closeNav() {
+            document.querySelector('nav').classList.remove('open');
+        }
+
+        function handleSubmit(e) {
+            e.preventDefault();
+            document.getElementById('formSuccess').classList.add('show');
+            e.target.reset();
+            setTimeout(function() {
+                document.getElementById('formSuccess').classList.remove('show');
+            }, 5000);
+            return false;
+        }
+
+        window.addEventListener('scroll', function() {
+            document.querySelector('header').classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        document.addEventListener('click', function(e) {
+            var nav = document.querySelector('nav');
+            var toggle = document.querySelector('.nav-toggle');
+            if (nav.classList.contains('open') && !nav.contains(e.target) && !toggle.contains(e.target)) {
+                nav.classList.remove('open');
+            }
+        });
+    </script>
+</body>
+</html>
